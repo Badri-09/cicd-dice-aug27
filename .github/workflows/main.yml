@@ -43,4 +43,4 @@ jobs:
           password: ${{ secrets.DOCKERHUBSECRET }}
 
      - name: push image
-       run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/dice-game:latest
+       run: docker push ${{ vars.DOCKERHUB_USERNAME }}/dice-game:latest
