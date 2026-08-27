@@ -1,0 +1,36 @@
+name: ci pipeline
+on: push
+
+jobs:
+  firstjob:
+   runs-on: ubuntu-latest
+   steps:
+     - name: checkout
+       uses: actions/checkout@v7
+
+     - name: SonarQube Scan
+       uses: SonarSource/sonarqube-scan-action@v6
+       env:
+         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+       with:
+        args: >
+          -Dsonar.qualitygate.wait=true
+          
+     - name: upload artifact
+       uses: actions/upload-artifact@v7
+       with:
+         name: dice
+         path: .
+
+  secondjob:
+   needs: firstjob
+   runs-on: ubuntu-latest
+   steps:
+     - name: download artifact
+       uses: actions/download-artifact@v8
+       with:
+         name: dice
+
+     - name: docker build
+       run: docker build -t dice-game:latest .
+       run: docker images
