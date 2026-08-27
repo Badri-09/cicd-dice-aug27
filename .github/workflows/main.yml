@@ -1,0 +1,14 @@
+name: ci pipeline
+on: push
+
+jobs:
+  firstjob:
+   runs-on: ubuntu-latest
+   steps:
+     - name: checkout
+       uses: actions/checkout@v7
+
+     - name: SonarQube Scan
+       uses: SonarSource/sonarqube-scan-action@v6
+       env:
+         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
