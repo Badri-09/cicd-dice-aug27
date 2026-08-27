@@ -33,4 +33,5 @@ jobs:
 
      - name: docker build
        run: docker build -t dice-game:latest .
+     - name: check dockerimage
        run: docker images
