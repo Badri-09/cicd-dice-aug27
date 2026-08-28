@@ -32,7 +32,7 @@ jobs:
          name: dice
 
      - name: docker build
-       run: docker build -t dice-game:latest .
+       run: docker build -t ${{ vars.DOCKERHUB_USERNAME }}/dice-game:latest .
      - name: check dockerimage
        run: docker images
 
@@ -43,4 +43,4 @@ jobs:
           password: ${{ secrets.DOCKERHUBSECRET }}
 
      - name: push image
-       run: docker push dice-game:latest
+       run: docker push ${{ vars.DOCKERHUB_USERNAME }}/dice-game:latest
