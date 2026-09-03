@@ -58,8 +58,8 @@ jobs:
           username: ec2-user
           key: ${{ secrets.ppk }} 
           script: |
-           sudo apt update
-           sudo apt install docker.io -y
+           sudo yum update
+           sudo yum install docker.io -y
            sudo systemctl start docker
            sudo systemctl enable docker
 
