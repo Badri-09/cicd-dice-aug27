@@ -55,7 +55,7 @@ jobs:
          uses: appleboy/ssh-action@v1
          with:
           host: ${{ secrets.IP }}
-          username: EC2-user
+          username: ec2-user
           key: ${{ secrets.ppk }} 
           script: |
            sudo apt update
