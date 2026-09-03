@@ -45,3 +45,26 @@ jobs:
 
      - name: push image
        run: docker push badri02/dice-game:v1
+
+
+  thirdjob:
+      needs: secondjob
+      runs-on: ubuntu-latest
+      steps:
+       - name: aws login
+         uses: appleboy/ssh-action@v1
+         with:
+          host: ${{ secrets.IP }}
+          username: EC2-user
+          key: ${{ secrets.ppk }} 
+          script: |
+           sudo apt update
+           sudo apt install docker.io -y
+           sudo systemctl start docker
+           sudo systemctl enable docker
+
+           docker --version
+           docker pull badri02/dice-game:v1
+           docker stop dice-game || true
+           docker rm dice-game || true
+           docker run -d -p 80:80 --name dice-game badri02/dice-game:v1
