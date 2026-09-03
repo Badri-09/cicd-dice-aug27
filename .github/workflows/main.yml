@@ -58,14 +58,13 @@ jobs:
           username: ec2-user
           key: ${{ secrets.ppk }} 
           script: |
-           sudo su
            sudo yum update
            sudo yum install docker -y
            sudo systemctl start docker
            sudo systemctl enable docker
 
-           docker --version
-           docker pull badri02/dice-game:v1
-           docker stop dice-game || true
-           docker rm dice-game || true
-           docker run -d -p 80:80 --name dice-game badri02/dice-game:v1
+           sudo docker --version
+           sudo docker pull badri02/dice-game:v1
+           sudo docker stop dice-game || true
+           sudo docker rm dice-game || true
+           sudo docker run -d -p 80:80 --name dice-game badri02/dice-game:v1
