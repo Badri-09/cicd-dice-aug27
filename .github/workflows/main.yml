@@ -59,7 +59,7 @@ jobs:
           key: ${{ secrets.ppk }} 
           script: |
            sudo yum update
-           sudo yum install docker.io -y
+           sudo yum install docker -y
            sudo systemctl start docker
            sudo systemctl enable docker
 
