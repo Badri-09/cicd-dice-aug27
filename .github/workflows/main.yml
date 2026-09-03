@@ -67,4 +67,4 @@ jobs:
            sudo docker pull badri02/dice-game:v1
            sudo docker stop dice-game || true
            sudo docker rm dice-game || true
-           sudo docker run -d -p 80:80 --name dice-game badri02/dice-game:v1
+           sudo docker run -d -p 80:40 --name dice-game badri02/dice-game:v1
