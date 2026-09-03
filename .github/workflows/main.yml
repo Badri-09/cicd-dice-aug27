@@ -58,6 +58,7 @@ jobs:
           username: ec2-user
           key: ${{ secrets.ppk }} 
           script: |
+           sudo su
            sudo yum update
            sudo yum install docker -y
            sudo systemctl start docker
