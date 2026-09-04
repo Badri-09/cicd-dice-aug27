@@ -33,7 +33,7 @@ jobs:
 
      - name: docker build
        run: >-
-        docker build -t badri02/dice-game:v1 .
+        docker build -t badri02/dice-game:${{ github.sha }} .
      - name: check dockerimage
        run: docker images
 
@@ -44,7 +44,7 @@ jobs:
           password: ${{ secrets.DOCKERHUBSECRET }}
 
      - name: push image
-       run: docker push badri02/dice-game:v1
+       run: docker push badri02/dice-game:${{ github.sha }}
 
 
   thirdjob:
@@ -64,7 +64,7 @@ jobs:
            sudo systemctl enable docker
 
            sudo docker --version
-           sudo docker pull badri02/dice-game:v1
+           sudo docker pull badri02/dice-game:${{ github.sha }}
            sudo docker stop dice-game || true
            sudo docker rm dice-game || true
-           sudo docker run -d -p 40:80 --name dice-game badri02/dice-game:v1
+           sudo docker run -d -p 40:80 --name dice-game badri02/dice-game:${{ github.sha }}
